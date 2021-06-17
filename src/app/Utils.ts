@@ -1,8 +1,11 @@
-import { UrlWithParsedQuery, parse } from "url";
+import { URL } from "url";
 
 export class Utils {
-  public static parseUrl(url: string): UrlWithParsedQuery {
-    return parse(url, true);
+  public static parseUrl(url: string): URL {
+    if (!url) {
+      throw new Error("Empty url!!");
+    }
+    return new URL(url);
   }
 
   public static toUpperCase(arg: string) {
