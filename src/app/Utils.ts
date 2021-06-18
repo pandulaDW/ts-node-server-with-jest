@@ -7,8 +7,4 @@ export class Utils {
     }
     return new URL(url);
   }
-
-  public static toUpperCase(arg: string) {
-    return arg.toUpperCase();
-  }
 }
