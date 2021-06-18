@@ -8,12 +8,29 @@ export interface SessionToken {
   userName: string;
   valid: boolean;
   expirationTime: Date;
-  accessRights: AccessRight;
+  accessRights: AccessRight[];
 }
 
 export interface TokenRights {
   accessRights: AccessRight[];
   state: TokenState;
+}
+
+export interface UserCredentials extends Account {
+  accessRights: AccessRight[];
+}
+
+export interface Account {
+  username: string;
+  password: string;
+}
+
+export interface TokenGenerator {
+  generateToken(account: Account): Promise<SessionToken | null>;
+}
+
+export interface TokenValidator {
+  validateToken(tokenId: string): Promise<TokenRights>;
 }
 
 export enum TokenState {
