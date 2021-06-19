@@ -1,5 +1,6 @@
 import { URL } from "url";
 import { IncomingMessage } from "http";
+import { basename } from "path";
 
 export class Utils {
   public static parseUrl(url: string): URL {
@@ -7,6 +8,15 @@ export class Utils {
       throw new Error("Empty url!!");
     }
     return new URL(url);
+  }
+
+  public static getRequestBasePath(req: IncomingMessage): string {
+    const url = req.url;
+    if (!url) {
+      return "";
+    }
+    const parsedUrl = this.parseUrl(url);
+    return basename(parsedUrl.pathname);
   }
 
   public static async getRequestBody(request: IncomingMessage): Promise<any> {
