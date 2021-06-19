@@ -10,11 +10,7 @@ export class Utils {
     return new URL(url);
   }
 
-  public static getRequestBasePath(req: IncomingMessage): string {
-    const url = req.url;
-    if (!url) {
-      return "";
-    }
+  public static getRequestBasePath(url: string): string {
     const parsedUrl = this.parseUrl(url);
     return basename(parsedUrl.pathname);
   }

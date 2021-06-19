@@ -11,7 +11,7 @@ export class Server {
 
   public startServer() {
     createServer(async (req, res) => {
-      const basePath = Utils.getRequestBasePath(req);
+      const basePath = Utils.getRequestBasePath(req.headers.host + req.url!);
       switch (basePath) {
         case "login":
           await new LoginHandler(req, res, this.authorizer).handleRequest();

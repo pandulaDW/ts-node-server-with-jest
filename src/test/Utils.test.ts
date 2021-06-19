@@ -1,4 +1,4 @@
-import { Utils } from "../app/Utils";
+import { Utils } from "../app/Utils/Utils";
 
 describe("Utils test suite", () => {
   test("parse simple URL", () => {
@@ -17,16 +17,21 @@ describe("Utils test suite", () => {
     expect(parsedUrl.searchParams.get("password")).toBe("pass");
   });
 
-  test("test invalid url", () => {
-    expect(() => Utils.parseUrl("")).toThrowError("Empty url!!");
-  });
-
-  test("test invalid URL with try catch", () => {
+  test("invalid url will throw an error", () => {
     try {
       Utils.parseUrl("");
     } catch (err) {
       expect(err).toBeInstanceOf(Error);
       expect(err).toHaveProperty("message", "Empty url!!");
     }
+  });
+
+  test("parse url basename", () => {
+    expect(Utils.getRequestBasePath("http://localhost:8080/login")).toBe(
+      "login"
+    );
+    expect(
+      Utils.getRequestBasePath("http://localhost:8080/login?user=adam")
+    ).toBe("login");
   });
 });
