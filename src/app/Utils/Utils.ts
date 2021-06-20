@@ -10,8 +10,8 @@ export class Utils {
     return new URL(url);
   }
 
-  public static getRequestBasePath(url: string): string {
-    const parsedUrl = this.parseUrl(url);
+  public static getRequestBasePath(req: IncomingMessage): string {
+    const parsedUrl = this.parseUrl(req.headers.host + req.url!);
     return basename(parsedUrl.pathname);
   }
 
