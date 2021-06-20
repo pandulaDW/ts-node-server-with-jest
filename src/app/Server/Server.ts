@@ -17,12 +17,13 @@ export class Server {
           await new LoginHandler(req, res, this.authorizer).handleRequest();
           break;
         case "users":
-          await new DataHandler(
+          const dataHandler = new DataHandler(
             req,
             res,
             this.authorizer,
             this.usersDBAccess
-          ).handleRequest();
+          );
+          await dataHandler.handleRequest();
           break;
         default:
           break;

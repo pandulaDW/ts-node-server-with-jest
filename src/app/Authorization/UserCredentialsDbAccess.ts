@@ -4,7 +4,7 @@ import { UserCredentials } from "../Models/ServerModels";
 export class UserCredentialsDbAccess {
   private nedb: Nedb;
 
-  constructor(nedb = new Nedb("databases/UsersCredentials,db")) {
+  constructor(nedb = new Nedb("databases/UsersCredentials.db")) {
     this.nedb = nedb;
     this.nedb.loadDatabase();
   }

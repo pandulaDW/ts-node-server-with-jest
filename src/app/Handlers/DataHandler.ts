@@ -55,7 +55,9 @@ export class DataHandler {
         return;
       }
 
-      const parsedUrl = Utils.parseUrl(this.request.url!);
+      const parsedUrl = Utils.parseUrl(
+        this.request.headers.host + this.request.url!
+      );
       const name = parsedUrl.searchParams.get("name");
 
       if (!name) {
